@@ -17,7 +17,7 @@ namespace EcommerceGate.Core.Models
 
         public string FullName { get; set; }
 
-        public long? VendorId { get; set; }
+        public int? VendorId { get; set; }
 
         public bool IsDeleted { get; set; }
 
@@ -29,11 +29,11 @@ namespace EcommerceGate.Core.Models
 
         public UserAddress DefaultShippingAddress { get; set; }
 
-        public long? DefaultShippingAddressId { get; set; }
+        public int? DefaultShippingAddressId { get; set; }
 
         public UserAddress DefaultBillingAddress { get; set; }
 
-        public long? DefaultBillingAddressId { get; set; }
+        public int? DefaultBillingAddressId { get; set; }
 
         public string RefreshTokenHash { get; set; }
 

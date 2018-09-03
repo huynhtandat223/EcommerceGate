@@ -61,7 +61,7 @@ namespace EcommerceGate.Api.Extensions
                     Path = moduleFolder.FullName
                 });
             }
-
+            
             foreach (var module in modules)
             {
                 var moduleInitializerType = module.Assembly.GetTypes().FirstOrDefault(x => typeof(IModuleInitializer).IsAssignableFrom(x));
@@ -223,7 +223,7 @@ namespace EcommerceGate.Api.Extensions
         {
             services.AddDbContextPool<EcommerceGateDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
-                    b => b.MigrationsAssembly("SimplCommerce.WebHost")));
+                    b => b.MigrationsAssembly("EcommerceGate.Api")));
             return services;
         }
 

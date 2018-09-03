@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.8.1" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EcommerceGate.Infrastructures\EcommerceGate.Infrastructures.csproj" />
+    <ProjectReference Include="..\Modules\EcommerceGate.Core\EcommerceGate.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Modules\" />
+  </ItemGroup>
+
+  <Target Name="RestoreNpmPackage" AfterTargets="CollectPackageReferences" Condition="!Exists('node_modules') ">
+    <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+    <Exec WorkingDirectory="." Command="npm install" />
+  </Target>
+
+  <Target Name="CopyModules" AfterTargets="Build">
+    <Exec WorkingDirectory="." Command="npm run gulp-copy-modules -- --configurationName $(ConfigurationName)" />
+  </Target>
+
+</Project>

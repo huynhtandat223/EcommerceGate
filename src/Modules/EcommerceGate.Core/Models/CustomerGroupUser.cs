@@ -2,11 +2,11 @@
 {
     public class CustomerGroupUser
     {
-        public long UserId { get; set; }
+        public int UserId { get; set; }
 
         public User User { get; set; }
 
-        public long CustomerGroupId { get; set; }
+        public int CustomerGroupId { get; set; }
 
         public CustomerGroup CustomerGroup { get; set; }
     }

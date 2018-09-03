@@ -18,6 +18,32 @@ namespace EcommerceGate.Core.Data
         {
         }
 
+        public override int SaveChanges()
+        {
+            TrackChanges();
+            return base.SaveChanges();
+        }
+        private Func<DateTime> TimestampProvider { get; set; } = () => DateTime.UtcNow;
+
+        private void TrackChanges()
+        {
+            foreach (var entry in this.ChangeTracker.Entries().Where(e => e.State == EntityState.Added || e.State == EntityState.Modified))
+            {
+                if (entry.Entity is IAuditable)
+                {
+                    var auditable = entry.Entity as IAuditable;
+                    if (entry.State == EntityState.Added)
+                    {
+                        auditable.CreatedDate = TimestampProvider();
+                    }
+                    else
+                    {
+                        auditable.UpdatedDate = TimestampProvider();
+                    }
+                }
+            }
+        }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             var typeToRegisters = new List<Type>();

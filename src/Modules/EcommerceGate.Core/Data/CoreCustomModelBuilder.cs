@@ -17,13 +17,13 @@ namespace EcommerceGate.Core.Data
             modelBuilder.Entity<Role>()
                 .ToTable("Core_Role");
 
-            modelBuilder.Entity<IdentityUserClaim<long>>(b =>
+            modelBuilder.Entity<IdentityUserClaim<int>>(b =>
             {
                 b.HasKey(uc => uc.Id);
                 b.ToTable("Core_UserClaim");
             });
 
-            modelBuilder.Entity<IdentityRoleClaim<long>>(b =>
+            modelBuilder.Entity<IdentityRoleClaim<int>>(b =>
             {
                 b.HasKey(rc => rc.Id);
                 b.ToTable("Core_RoleClaim");
@@ -37,12 +37,12 @@ namespace EcommerceGate.Core.Data
                 b.ToTable("Core_UserRole");
             });
 
-            modelBuilder.Entity<IdentityUserLogin<long>>(b =>
+            modelBuilder.Entity<IdentityUserLogin<int>>(b =>
             {
                 b.ToTable("Core_UserLogin");
             });
 
-            modelBuilder.Entity<IdentityUserToken<long>>(b =>
+            modelBuilder.Entity<IdentityUserToken<int>>(b =>
             {
                 b.ToTable("Core_UserToken");
             });

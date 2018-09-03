@@ -1,0 +1,16 @@
+﻿using EcommerceGate.Core.Models;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace EcommerceGate.Module.Products.Models
+{
+    public class Category : EntityBase
+    {
+        [StringLength(350), Required]
+        public string Name { set; get; }
+        public int ParentId { set; get; }
+        [StringLength(10)]
+        public string SKUPrefix { set; get; }
+        public ICollection<ProductCategory> ProductCategories { get; set; }
+    }
+}
