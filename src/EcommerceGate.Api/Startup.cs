@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using EcommerceGate.Api.Extensions;
+using EcommerceGate.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -14,17 +17,38 @@ namespace EcommerceGate.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IConfiguration _configuration;
+
+        public Startup(IConfiguration configuration, IHostingEnvironment hostingEnvironment)
         {
-            Configuration = configuration;
+            _configuration = configuration;
+            _hostingEnvironment = hostingEnvironment;
         }
+        
 
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            GlobalConfiguration.WebRootPath = _hostingEnvironment.WebRootPath;
+            GlobalConfiguration.ContentRootPath = _hostingEnvironment.ContentRootPath;
+            services.LoadInstalledModules(_hostingEnvironment.ContentRootPath);
+
+            services.AddCustomizedDataStore(_configuration);
+            services.AddCustomizedIdentity(_configuration);
+
+            services.AddCustomizedMvc(GlobalConfiguration.Modules);
+
+            var sp = services.BuildServiceProvider();
+            var moduleInitializers = sp.GetServices<IModuleInitializer>();
+            foreach (var moduleInitializer in moduleInitializers)
+            {
+                moduleInitializer.ConfigureServices(services);
+            }
+
+            return services.Build(_configuration, _hostingEnvironment);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,7 +59,13 @@ namespace EcommerceGate.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseMvcWithDefaultRoute();
+            var moduleInitializers = app.ApplicationServices.GetServices<IModuleInitializer>();
+            foreach (var moduleInitializer in moduleInitializers)
+            {
+                moduleInitializer.Configure(app, env);
+            }
+
         }
     }
 }

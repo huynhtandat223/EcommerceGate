@@ -6,7 +6,8 @@ using System.Collections.Generic;
 namespace EcommerceGate.Module.Products.Controllers
 {
     [Route("api/[controller]")]
-    public class CategoryController : Controller
+    [ApiController]
+    public class CategoriesController : ControllerBase
     {
         // GET: api/<controller>
         [HttpGet]

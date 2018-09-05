@@ -117,20 +117,7 @@ namespace EcommerceGate.Api.Extensions
 
         public static IServiceCollection AddCustomizedMvc(this IServiceCollection services, IList<ModuleInfo> modules)
         {
-            var mvcBuilder = services
-                .AddMvc(o =>
-                {
-                    o.ModelBinderProviders.Insert(0, new InvariantDecimalModelBinderProvider());
-                })
-                .AddRazorOptions(o =>
-                {
-                    foreach (var module in modules)
-                    {
-                        o.AdditionalCompilationReferences.Add(MetadataReference.CreateFromFile(module.Assembly.Location));
-                    }
-                })
-                .AddViewLocalization()
-                .AddDataAnnotationsLocalization()
+            var mvcBuilder = services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1); ;
 
             foreach (var module in modules)

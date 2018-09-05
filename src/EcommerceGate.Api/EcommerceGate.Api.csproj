@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\EcommerceGate.Infrastructures\EcommerceGate.Infrastructures.csproj" />
     <ProjectReference Include="..\Modules\EcommerceGate.Core\EcommerceGate.Core.csproj" />
+    <ProjectReference Include="..\Modules\EcommerceGate.Module.Taobao\EcommerceGate.Module.Taobao.csproj" />
   </ItemGroup>
 
   <ItemGroup>
