@@ -1,6 +1,6 @@
 {
   "name": "core",
   "fullName": "EcommerceGate.Core",
-  "isBundledWithHost": true,
+  "isBundledWithHost": false,
   "version": "1.0.0"
 }

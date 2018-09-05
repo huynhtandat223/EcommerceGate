@@ -1,6 +1,6 @@
 {
   "name": "products",
   "fullName": "EcommerceGate.Module.Products",
-  "isBundledWithHost": true,
+  "isBundledWithHost": false,
   "version": "1.0.0"
 }

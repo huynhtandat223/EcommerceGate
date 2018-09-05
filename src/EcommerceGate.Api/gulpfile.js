@@ -96,7 +96,6 @@ gulp.task('copy-static', function () {
 
 gulp.task('copy-modules', ['clean-module'], function () {
     gulp.start(['copy-static']);
-
     modules.forEach(function (module) {
         if (!module.isBundledWithHost) {
             console.log('copying ' + paths.dev.modules + module.fullName + paths.dev.moduleBin);
