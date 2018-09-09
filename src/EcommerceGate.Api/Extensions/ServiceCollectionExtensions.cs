@@ -6,6 +6,7 @@ using EcommerceGate.Core.Data;
 using EcommerceGate.Core.Entities;
 using EcommerceGate.Core.Extensions;
 using EcommerceGate.Core.Models;
+using EcommerceGate.Infrastructures.Data;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -218,9 +219,8 @@ namespace EcommerceGate.Api.Extensions
             IConfiguration configuration, IHostingEnvironment hostingEnvironment)
         {
             var builder = new ContainerBuilder();
-            //builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>));
-            //builder.RegisterGeneric(typeof(RepositoryWithTypedId<,>)).As(typeof(IRepositoryWithTypedId<,>));
-            //builder.RegisterType<RazorViewRenderer>().As<IRazorViewRenderer>();
+            builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>));
+            builder.RegisterGeneric(typeof(RepositoryWithTypedId<,>)).As(typeof(IRepositoryWithTypedId<,>));
 
             //builder.RegisterSource(new ContravariantRegistrationSource());
             //builder.RegisterType<SequentialMediator>().As<IMediator>().InstancePerLifetimeScope();
@@ -232,13 +232,13 @@ namespace EcommerceGate.Api.Extensions
             //  })
             //  .InstancePerLifetimeScope();
 
-            //foreach (var module in GlobalConfiguration.Modules)
-            //{
-            //    builder.RegisterAssemblyTypes(module.Assembly).Where(t => t.Name.EndsWith("Repository")).AsImplementedInterfaces();
-            //    builder.RegisterAssemblyTypes(module.Assembly).Where(t => t.Name.EndsWith("Service")).AsImplementedInterfaces();
-            //    builder.RegisterAssemblyTypes(module.Assembly).Where(t => t.Name.EndsWith("ServiceProvider")).AsImplementedInterfaces();
-            //    builder.RegisterAssemblyTypes(module.Assembly).Where(t => t.Name.EndsWith("Handler")).AsImplementedInterfaces();
-            //}
+            foreach (var module in GlobalConfiguration.Modules)
+            {
+                builder.RegisterAssemblyTypes(module.Assembly).Where(t => t.Name.EndsWith("Repository")).AsImplementedInterfaces();
+                //builder.RegisterAssemblyTypes(module.Assembly).Where(t => t.Name.EndsWith("Service")).AsImplementedInterfaces();
+                //builder.RegisterAssemblyTypes(module.Assembly).Where(t => t.Name.EndsWith("ServiceProvider")).AsImplementedInterfaces();
+                //builder.RegisterAssemblyTypes(module.Assembly).Where(t => t.Name.EndsWith("Handler")).AsImplementedInterfaces();
+            }
 
             builder.RegisterInstance(configuration);
             builder.RegisterInstance(hostingEnvironment);
