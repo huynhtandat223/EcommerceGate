@@ -9,6 +9,9 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule } from '@angular/material';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { HttpErrorHandler }     from './http-error-handler.service';
+import { MessageService }       from './message.service';
 
 @NgModule({
   declarations: [
@@ -28,9 +31,13 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    HttpErrorHandler,
+    MessageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

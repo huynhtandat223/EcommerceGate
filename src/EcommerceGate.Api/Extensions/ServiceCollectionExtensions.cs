@@ -119,7 +119,7 @@ namespace EcommerceGate.Api.Extensions
         public static IServiceCollection AddCustomizedMvc(this IServiceCollection services, IList<ModuleInfo> modules)
         {
             var mvcBuilder = services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1); ;
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             foreach (var module in modules)
             {

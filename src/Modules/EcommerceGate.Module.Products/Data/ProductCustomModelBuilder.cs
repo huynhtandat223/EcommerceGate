@@ -38,7 +38,8 @@ namespace EcommerceGate.Module.Products.Data
             modelBuilder.Entity<ProductOptionValue>()
                 .HasKey(bc => new { bc.ProductId, bc.OptionId, bc.ProductOptionValudeDefaultId });
 
-           
+            ProductsSeedData.SeedData(modelBuilder);
+
         }
     }
 }

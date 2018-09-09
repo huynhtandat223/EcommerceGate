@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcommerceGate.Api.Migrations
 {
     [DbContext(typeof(EcommerceGateDbContext))]
-    [Migration("20180909052525_Test")]
+    [Migration("20180909070230_Test")]
     partial class Test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
+                .HasAnnotation("ProductVersion", "2.1.2-rtm-30932")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -419,6 +419,15 @@ namespace EcommerceGate.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products_Category");
+
+                    b.HasData(
+                        new { Id = 1, Name = "Category 1", ParentId = 0, SKUPrefix = "C1" },
+                        new { Id = 2, Name = "Category 2", ParentId = 0, SKUPrefix = "C2" },
+                        new { Id = 3, Name = "Category 3", ParentId = 1, SKUPrefix = "C3" },
+                        new { Id = 4, Name = "Category 4", ParentId = 1, SKUPrefix = "C4" },
+                        new { Id = 5, Name = "Category 5", ParentId = 2, SKUPrefix = "C5" },
+                        new { Id = 6, Name = "Category 6", ParentId = 3, SKUPrefix = "C6" }
+                    );
                 });
 
             modelBuilder.Entity("EcommerceGate.Module.Products.Models.Image", b =>

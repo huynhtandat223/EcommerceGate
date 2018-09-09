@@ -465,22 +465,22 @@ namespace EcommerceGate.Api.Migrations
                 name: "Core_User",
                 columns: table => new
                 {
-                    AccessFailedCount = table.Column<int>(nullable: false),
-                    EmailConfirmed = table.Column<bool>(nullable: false),
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    LockoutEnabled = table.Column<bool>(nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(nullable: false),
                     UserName = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
                     PasswordHash = table.Column<string>(nullable: true),
                     SecurityStamp = table.Column<string>(nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
+                    LockoutEnabled = table.Column<bool>(nullable: false),
+                    AccessFailedCount = table.Column<int>(nullable: false),
                     UserGuid = table.Column<Guid>(nullable: false),
                     FullName = table.Column<string>(nullable: true),
                     VendorId = table.Column<int>(nullable: true),
@@ -522,10 +522,10 @@ namespace EcommerceGate.Api.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { 1, "4776a1b2-dbe4-4056-82ec-8bed211d1454", "admin", "ADMIN" },
+                    { 4, "71f10604-8c4d-4a7d-ac4a-ffefb11cefeb", "vendor", "VENDOR" },
                     { 2, "00d172be-03a0-4856-8b12-26d63fcf4374", "customer", "CUSTOMER" },
-                    { 3, "d4754388-8355-4018-b728-218018836817", "guest", "GUEST" },
-                    { 4, "71f10604-8c4d-4a7d-ac4a-ffefb11cefeb", "vendor", "VENDOR" }
+                    { 1, "4776a1b2-dbe4-4056-82ec-8bed211d1454", "admin", "ADMIN" },
+                    { 3, "d4754388-8355-4018-b728-218018836817", "guest", "GUEST" }
                 });
 
             migrationBuilder.InsertData(
@@ -542,8 +542,8 @@ namespace EcommerceGate.Api.Migrations
                 columns: new[] { "Id", "Code3", "IsBillingEnabled", "IsCityEnabled", "IsDistrictEnabled", "IsShippingEnabled", "IsZipCodeEnabled", "Name" },
                 values: new object[,]
                 {
-                    { "VN", "VNM", true, false, true, true, false, "Việt Nam" },
-                    { "US", "USA", true, true, false, true, true, "United States" }
+                    { "US", "USA", true, true, false, true, true, "United States" },
+                    { "VN", "VNM", true, false, true, true, false, "Việt Nam" }
                 });
 
             migrationBuilder.InsertData(
@@ -559,6 +559,19 @@ namespace EcommerceGate.Api.Migrations
                 table: "Models_EntityType",
                 columns: new[] { "Id", "IsMenuable", "RoutingAction", "RoutingController" },
                 values: new object[] { "Vendor", false, "VendorDetail", "Vendor" });
+
+            migrationBuilder.InsertData(
+                table: "Products_Category",
+                columns: new[] { "Id", "Name", "ParentId", "SKUPrefix" },
+                values: new object[,]
+                {
+                    { 5, "Category 5", 2, "C5" },
+                    { 1, "Category 1", 0, "C1" },
+                    { 2, "Category 2", 0, "C2" },
+                    { 3, "Category 3", 1, "C3" },
+                    { 4, "Category 4", 1, "C4" },
+                    { 6, "Category 6", 3, "C6" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Core_UserRole",

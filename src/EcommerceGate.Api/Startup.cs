@@ -38,7 +38,7 @@ namespace EcommerceGate.Api
 
             services.AddCustomizedDataStore(_configuration);
             services.AddCustomizedIdentity(_configuration);
-
+            services.AddCors();
             services.AddCustomizedMvc(GlobalConfiguration.Modules);
 
             var sp = services.BuildServiceProvider();
@@ -49,6 +49,7 @@ namespace EcommerceGate.Api
             }
 
             return services.Build(_configuration, _hostingEnvironment);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +59,8 @@ namespace EcommerceGate.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod()
+.AllowAnyOrigin().AllowCredentials());
 
             app.UseMvcWithDefaultRoute();
             var moduleInitializers = app.ApplicationServices.GetServices<IModuleInitializer>();
@@ -66,6 +69,8 @@ namespace EcommerceGate.Api
                 moduleInitializer.Configure(app, env);
             }
 
+
+            
         }
     }
 }
