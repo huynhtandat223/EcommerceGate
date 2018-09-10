@@ -10,8 +10,10 @@ import { CategoriesService } from '../categories.service';
 export class CategoriesComponent implements OnInit {
 
   constructor(private categoriesService: CategoriesService) { }
-  categories: any[];
-  displayedColumns: string[] = ['name', 'parentId', 'skuPrefix',];
+  categories: any[] = [];
+  filteredData: any[] = [];
+  renderedData: any[] = [];
+  displayedColumns: string[] = ['id', 'name', 'parentId', 'skuPrefix', 'actions'];
 
 
   ngOnInit() {
@@ -21,5 +23,6 @@ export class CategoriesComponent implements OnInit {
     this.categoriesService.getCategories()
       .subscribe(categories => {this.categories = categories; console.log(this.categories)});
   }
+  refresh(){}
 
 }
