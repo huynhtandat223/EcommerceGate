@@ -4,7 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 
 
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
@@ -22,6 +22,9 @@ const httpOptions = {
 export class CategoriesService {
   categoriesUrl = 'http://localhost:59362/api/categories';  // URL to web api
   private handleError: HandleError;
+
+  dataChange: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  dialogData: any;
 
   constructor(
     private http: HttpClient,

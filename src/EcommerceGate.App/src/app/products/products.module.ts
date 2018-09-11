@@ -3,13 +3,17 @@ import { CommonModule } from '@angular/common';
 
 import { ProductsRoutingModule } from './products-routing.module';
 import { CategoriesComponent } from './categories/categories.component';
-import { MatTableModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatPaginatorModule } from '@angular/material';
+import { MatDialogModule, MatTableModule, MatIconModule, MatInputModule, MatToolbarModule, MatFormFieldModule, MatPaginatorModule } from '@angular/material';
+import { CategoryDialogComponent } from './dialogs/category-dialog/category-dialog.component';
 
 @NgModule({
   imports: [
-    CommonModule, MatTableModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatPaginatorModule,
+    CommonModule, MatTableModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatPaginatorModule, MatInputModule, MatDialogModule,
     ProductsRoutingModule
   ],
-  declarations: [CategoriesComponent]
+  declarations: [CategoriesComponent, CategoryDialogComponent],
+  entryComponents:[
+    CategoryDialogComponent
+  ]
 })
 export class ProductsModule { }
