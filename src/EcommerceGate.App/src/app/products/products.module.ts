@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { ProductsRoutingModule } from './products-routing.module';
 import { CategoriesComponent } from './categories/categories.component';
-import { MatDialogModule, MatTableModule, MatIconModule, MatInputModule, MatToolbarModule, MatFormFieldModule, MatPaginatorModule } from '@angular/material';
+import { MatSelectModule , MatDialogModule, MatTableModule, MatIconModule, MatInputModule, MatToolbarModule, MatFormFieldModule, MatPaginatorModule } from '@angular/material';
 import { CategoryDialogComponent } from './dialogs/category-dialog/category-dialog.component';
 
 @NgModule({
   imports: [
-    CommonModule, MatTableModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatPaginatorModule, MatInputModule, MatDialogModule,
+    CommonModule, MatSelectModule, MatTableModule, MatIconModule, MatToolbarModule, MatFormFieldModule, MatPaginatorModule, MatInputModule, MatDialogModule,
     ProductsRoutingModule
   ],
   declarations: [CategoriesComponent, CategoryDialogComponent],
