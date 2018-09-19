@@ -11,6 +11,10 @@ export const appRoutes=[
         component: HomeComponent
     },
     {
+        path: 'products',
+        loadChildren:'./pages/products/products.module#ProductsModule',
+    },
+    {
         path: 'others',
         loadChildren:'./pages/others/others.module#OthersModule',
     },

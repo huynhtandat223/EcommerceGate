@@ -15,6 +15,5 @@ export class Topnavbar {
     }
     logout() {
         localStorage.clear();
-        // location.href='http://to_login_page';
     }
 }
