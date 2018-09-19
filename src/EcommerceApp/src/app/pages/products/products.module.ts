@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { ProductsRoutingModule } from './products-routing.module';
 import { CategoriesComponent } from './categories/categories.component';
+import { GridModule } from '@progress/kendo-angular-grid';
+
 
 @NgModule({
   imports: [
-    CommonModule,
+    CommonModule, GridModule,
     ProductsRoutingModule
   ],
   declarations: [CategoriesComponent]

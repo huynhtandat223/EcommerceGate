@@ -9,6 +9,13 @@ import {Navigation} from "./components/navigation/navigation.component";
 import {RouterModule} from "@angular/router";
 import {appRoutes} from "./app.routes";
 import {HomeComponent} from "./pages/home/home.component";
+import { GridModule } from '@progress/kendo-angular-grid';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpErrorHandler }     from './http-error-handler.service';
+import { MessageService }       from './message.service';
+
+
 
 @NgModule({
   declarations: [
@@ -21,9 +28,12 @@ import {HomeComponent} from "./pages/home/home.component";
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    GridModule, HttpClientModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [HttpErrorHandler,
+    MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

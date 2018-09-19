@@ -7,6 +7,20 @@
 </div>
 <div class="row wrapper wrapper-content animated fadeInRight">
   <div class="col-lg-12">
+    <div class="row">
+      <div class="ibox-content">
+          <kendo-grid [data]="categories" [height]="600">
+              <kendo-grid-column field="id" title="ID" width="40">
+              </kendo-grid-column>
+              <kendo-grid-column field="name" title="Name" width="250">
+              </kendo-grid-column>
+              <kendo-grid-column field="parentId" title="Parent">
+              </kendo-grid-column>
+              <kendo-grid-column field="skuPrefix" title="SKU Prefix" width="80">
+              </kendo-grid-column>
+          </kendo-grid>
+      </div>
+    </div>
     
   </div>
 </div>
