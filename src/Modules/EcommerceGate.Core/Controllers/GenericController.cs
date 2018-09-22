@@ -1,5 +1,6 @@
 ﻿using EcommerceGate.Infrastructures.Data;
 using EcommerceGate.Infrastructures.Models;
+using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,25 +10,33 @@ using System.Linq;
 namespace EcommerceGate.Core.Controllers
 {
     [Route("api/[controller]")]
-    public class GenericController<T> : Controller where T : IEntityWithTypedId<int>
+    public class GenericController<T> : ODataController where T : IEntityWithTypedId<int>
     {
-        private readonly IRepository<T> _repo;
+        protected readonly IRepository<T> _repo;
         public GenericController(IRepository<T> repo)
         {
             _repo = repo;
         }
 
-        [HttpGet]
-        public IEnumerable<T> Get()
+        [EnableQuery]
+        public IActionResult Get()
         {
-            return _repo.Query().ToList();
+            return Ok(_repo.Query());
         }
 
-        [HttpGet("{id}")]
-        public T Get(int id)
+        [EnableQuery]
+        public IActionResult Get(int key)
         {
-            return _repo.GetById(id);
+            return Ok(_repo.GetById(key));
         }
-        
+
+        [EnableQuery]
+        public IActionResult Post([FromBody]T entity)
+        {
+            _repo.Add(entity);
+            _repo.SaveChanges();
+            return Created(entity);
+        }
+
     }
 }

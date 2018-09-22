@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcommerceGate.Api.Migrations
 {
     [DbContext(typeof(EcommerceGateDbContext))]
-    [Migration("20180909070230_Test")]
-    partial class Test
+    [Migration("20180922054014_initcreated")]
+    partial class initcreated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -413,6 +413,9 @@ namespace EcommerceGate.Api.Migrations
 
                     b.Property<int>("ParentId");
 
+                    b.Property<string>("ParentName")
+                        .HasMaxLength(350);
+
                     b.Property<string>("SKUPrefix")
                         .HasMaxLength(10);
 
@@ -423,10 +426,10 @@ namespace EcommerceGate.Api.Migrations
                     b.HasData(
                         new { Id = 1, Name = "Category 1", ParentId = 0, SKUPrefix = "C1" },
                         new { Id = 2, Name = "Category 2", ParentId = 0, SKUPrefix = "C2" },
-                        new { Id = 3, Name = "Category 3", ParentId = 1, SKUPrefix = "C3" },
-                        new { Id = 4, Name = "Category 4", ParentId = 1, SKUPrefix = "C4" },
-                        new { Id = 5, Name = "Category 5", ParentId = 2, SKUPrefix = "C5" },
-                        new { Id = 6, Name = "Category 6", ParentId = 3, SKUPrefix = "C6" }
+                        new { Id = 3, Name = "Category 3", ParentId = 1, ParentName = "Category 1", SKUPrefix = "C3" },
+                        new { Id = 4, Name = "Category 4", ParentId = 1, ParentName = "Category 1", SKUPrefix = "C4" },
+                        new { Id = 5, Name = "Category 5", ParentId = 2, ParentName = "Category 2", SKUPrefix = "C5" },
+                        new { Id = 6, Name = "Category 6", ParentId = 3, ParentName = "Category 3", SKUPrefix = "C6" }
                     );
                 });
 

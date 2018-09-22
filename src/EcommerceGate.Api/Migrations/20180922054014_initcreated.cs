@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EcommerceGate.Api.Migrations
 {
-    public partial class Test : Migration
+    public partial class initcreated : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -95,6 +95,7 @@ namespace EcommerceGate.Api.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(maxLength: 350, nullable: false),
                     ParentId = table.Column<int>(nullable: false),
+                    ParentName = table.Column<string>(maxLength: 350, nullable: true),
                     SKUPrefix = table.Column<string>(maxLength: 10, nullable: true)
                 },
                 constraints: table =>
@@ -562,15 +563,15 @@ namespace EcommerceGate.Api.Migrations
 
             migrationBuilder.InsertData(
                 table: "Products_Category",
-                columns: new[] { "Id", "Name", "ParentId", "SKUPrefix" },
+                columns: new[] { "Id", "Name", "ParentId", "ParentName", "SKUPrefix" },
                 values: new object[,]
                 {
-                    { 5, "Category 5", 2, "C5" },
-                    { 1, "Category 1", 0, "C1" },
-                    { 2, "Category 2", 0, "C2" },
-                    { 3, "Category 3", 1, "C3" },
-                    { 4, "Category 4", 1, "C4" },
-                    { 6, "Category 6", 3, "C6" }
+                    { 5, "Category 5", 2, "Category 2", "C5" },
+                    { 1, "Category 1", 0, null, "C1" },
+                    { 2, "Category 2", 0, null, "C2" },
+                    { 3, "Category 3", 1, "Category 1", "C3" },
+                    { 4, "Category 4", 1, "Category 1", "C4" },
+                    { 6, "Category 6", 3, "Category 3", "C6" }
                 });
 
             migrationBuilder.InsertData(

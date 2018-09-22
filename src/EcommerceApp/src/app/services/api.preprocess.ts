@@ -1,0 +1,1 @@
+export const preProcess = (res) => res.value;

@@ -7,12 +7,15 @@
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.8.1" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.OData" Version="7.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\EcommerceGate.Infrastructures\EcommerceGate.Infrastructures.csproj" />
     <ProjectReference Include="..\Modules\EcommerceGate.Core\EcommerceGate.Core.csproj" />
+    <ProjectReference Include="..\Modules\EcommerceGate.Module.Products\EcommerceGate.Module.Products.csproj" />
     <ProjectReference Include="..\Modules\EcommerceGate.Module.Taobao\EcommerceGate.Module.Taobao.csproj" />
   </ItemGroup>
 

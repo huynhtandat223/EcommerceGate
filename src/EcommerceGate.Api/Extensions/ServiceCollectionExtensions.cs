@@ -7,6 +7,7 @@ using EcommerceGate.Core.Entities;
 using EcommerceGate.Core.Extensions;
 using EcommerceGate.Core.Models;
 using EcommerceGate.Infrastructures.Data;
+using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -70,6 +71,12 @@ namespace EcommerceGate.Api.Extensions
                 {
                     services.AddSingleton(typeof(IModuleInitializer), moduleInitializerType);
                 }
+
+                var odataCustomModelBuilderType = module.Assembly.GetTypes().FirstOrDefault(x => typeof(IODataCustomModelBuilder).IsAssignableFrom(x));
+                if ((odataCustomModelBuilderType != null) && (odataCustomModelBuilderType != typeof(IODataCustomModelBuilder)))
+                {
+                    services.AddSingleton(typeof(IODataCustomModelBuilder), odataCustomModelBuilderType);
+                }
             }
 
             GlobalConfiguration.Modules = modules;
@@ -118,6 +125,7 @@ namespace EcommerceGate.Api.Extensions
 
         public static IServiceCollection AddCustomizedMvc(this IServiceCollection services, IList<ModuleInfo> modules)
         {
+            services.AddOData();
             var mvcBuilder = services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 

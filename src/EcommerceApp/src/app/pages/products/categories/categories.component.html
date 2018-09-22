@@ -10,16 +10,16 @@
     <div class="row">
       <div class="ibox-content">
           <kendo-grid [data]="categories" [height]="600">
-              <kendo-grid-column field="id" title="ID" width="40">
+              <kendo-grid-column field="Id" title="ID" width="40">
               </kendo-grid-column>
-              <kendo-grid-column field="name" title="Name" width="250">
+              <kendo-grid-column field="Name" title="Name" width="250">
               </kendo-grid-column>
-              <kendo-grid-column field="parentId" title="Parent">
+              <kendo-grid-column field="ParentId" title="Parent">
                   <ng-template kendoGridCellTemplate let-dataItem>
-                      <span>{{dataItem.parentId}}</span>
+                      <span>{{dataItem.ParentName}}</span>
                   </ng-template>
               </kendo-grid-column>
-              <kendo-grid-column field="skuPrefix" title="SKU Prefix" width="80">
+              <kendo-grid-column field="SKUPrefix" title="SKU Prefix" width="80">
               </kendo-grid-column>
           </kendo-grid>
       </div>

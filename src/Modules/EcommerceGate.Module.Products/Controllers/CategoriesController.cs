@@ -8,6 +8,7 @@ namespace EcommerceGate.Module.Products.Controllers
     {
         public CategoriesController(IRepository<Category> repo) : base(repo)
         {
+           
         }
     }
 }
