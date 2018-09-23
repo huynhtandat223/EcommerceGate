@@ -18,31 +18,29 @@ namespace EcommerceGate.Core.Data
 
         protected DbSet<T> DbSet { get; }
 
-        public void Add(T entity)
+        public T Add(T entity)
         {
             DbSet.Add(entity);
-        }
-        
-        public void SaveChanges()
-        {
             Context.SaveChanges();
+            return entity;
         }
-
-        public Task SaveChangesAsync()
-        {
-            return Context.SaveChangesAsync();
-        }
-
         public IQueryable<T> Query()
         {
             return DbSet;
         }
 
-        public void Remove(T entity)
+        public T Remove(T entity)
         {
             DbSet.Remove(entity);
+            Context.SaveChanges();
+            return entity;
         }
-
+        public T Update(T entity)
+        {
+            Context.Entry(entity).State = EntityState.Modified;
+            Context.SaveChanges();
+            return entity;
+        }
         public T GetById(TId id)
         {
             return DbSet.Find(id);

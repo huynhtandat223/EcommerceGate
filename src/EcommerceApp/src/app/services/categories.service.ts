@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import 'rxjs/add/operator/map';
-import { catchError } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
 import { environment } from '../../environments/environment';
 const httpOptions = {
@@ -13,7 +12,7 @@ const httpOptions = {
   })
 };
 
-import { preProcess } from './api.preprocess';
+import { preProcess, preProcessNothing } from './api.preprocess';
 
 @Injectable({
   providedIn: 'root'
@@ -34,9 +33,39 @@ export class CategoriesService {
   /** GET categories from the server */
   getCategories (): Observable<any[]> {
     return this.http.get<any>(this.categoriesUrl)
-      .map(preProcess)
       .pipe(
+        map(preProcess),
         catchError(this.handleError('getCategories', []))
       );
+  }
+
+  createCategory(category): Observable<any> {
+    return this.http.post(this.categoriesUrl, category, httpOptions)
+      .pipe(
+        map(preProcessNothing),
+        catchError(this.handleError('createCategories', []))
+      );
+  }
+
+  deleteCategory(category): Observable<any>{
+    const id = typeof category === 'number' ? category : category.Id;
+    const url = `${this.categoriesUrl}/${id}`; 
+    return this.http.delete(url, httpOptions)
+      .pipe(
+        map(preProcessNothing),
+        catchError(this.handleError('deleteCategories', []))
+      )
+  }
+
+  updateCategory(category): Observable<any>{
+
+    const id = typeof category === 'number' ? category : category.Id;
+    const url = `${this.categoriesUrl}/${id}`; 
+
+    return this.http.put(url, category, httpOptions)
+    .pipe(
+      map(preProcessNothing),
+      catchError(this.handleError('updateCategories', []))
+    )
   }
 }

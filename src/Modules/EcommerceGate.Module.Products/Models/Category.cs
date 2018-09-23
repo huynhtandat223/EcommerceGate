@@ -6,6 +6,7 @@ namespace EcommerceGate.Module.Products.Models
 {
     public class Category : EntityBase
     {
+
         [StringLength(350), Required]
         public string Name { set; get; }
         public int ParentId { set; get; }

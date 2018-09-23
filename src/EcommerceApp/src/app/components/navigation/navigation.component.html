@@ -26,8 +26,11 @@
             <li [ngClass]="{active: activeRoute('others')}">
                 <a [routerLink]="['./others']"><i class="fa fa-desktop"></i> <span class="nav-label">Others</span></a>
             </li>
-            <li [ngClass]="{active: activeRoute('products')}">
-                <a [routerLink]="['./products']"><i class="fa fa-desktop"></i> <span class="nav-label">Products</span></a>
+            <li [ngClass]="{active: activeRoute('products/categories')}">
+                <a [routerLink]="['./products/categories']"><i class="fa fa-desktop"></i> <span class="nav-label">Categories</span></a>
+            </li>
+            <li [ngClass]="{active: activeRoute('products/productoptions')}">
+                <a [routerLink]="['./products/productoptions']"><i class="fa fa-desktop"></i> <span class="nav-label">Product Options</span></a>
             </li>
         </ul>
 

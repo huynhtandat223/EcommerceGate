@@ -1,16 +1,13 @@
-﻿using EcommerceGate.Infrastructures.Data;
-using EcommerceGate.Infrastructures.Models;
+﻿using EcommerceGate.Core.Models;
+using EcommerceGate.Infrastructures.Data;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using System;
 
 namespace EcommerceGate.Core.Controllers
 {
     [Route("api/[controller]")]
-    public class GenericController<T> : ODataController where T : IEntityWithTypedId<int>
+    public class GenericController<T> : ODataController where T : EntityBase
     {
         protected readonly IRepository<T> _repo;
         public GenericController(IRepository<T> repo)
@@ -23,19 +20,32 @@ namespace EcommerceGate.Core.Controllers
         {
             return Ok(_repo.Query());
         }
-
-        [EnableQuery]
-        public IActionResult Get(int key)
-        {
-            return Ok(_repo.GetById(key));
-        }
-
+        
         [EnableQuery]
         public IActionResult Post([FromBody]T entity)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
             _repo.Add(entity);
-            _repo.SaveChanges();
-            return Created(entity);
+            return Ok(entity);
+        }
+
+        [EnableQuery]
+        public IActionResult Put([FromODataUri]int key, [FromBody]T update)
+        {
+            if (!ModelState.IsValid || key != update.Id) return BadRequest(ModelState);
+            _repo.Update(update);
+            return Ok(update);
+        }
+        
+        [EnableQuery]
+        public IActionResult Delete([FromODataUri] int key)
+        {
+            if (key < 0) return BadRequest("key == 0");
+
+            var entity = Activator.CreateInstance<T>();
+            entity.Id = key;
+            _repo.Remove(entity);
+            return Ok(entity);
         }
 
     }

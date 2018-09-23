@@ -7,16 +7,10 @@ namespace EcommerceGate.Infrastructures.Data
     public interface IRepositoryWithTypedId<T, TId> where T : IEntityWithTypedId<TId>
     {
         T GetById(TId id);
-
         IQueryable<T> Query();
-
-        void Add(T entity);
-
-        void SaveChanges();
-
-        Task SaveChangesAsync();
-
-        void Remove(T entity);
+        T Add(T entity);
+        T Remove(T entity);
+        T Update(T entity);
     }
 }
 
