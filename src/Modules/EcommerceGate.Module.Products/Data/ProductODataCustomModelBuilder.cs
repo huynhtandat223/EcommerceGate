@@ -9,7 +9,9 @@ namespace EcommerceGate.Module.Products.Data
         public void RegistEntities(ODataModelBuilder builder)
         {
             builder.EntitySet<Category>("Categories");
+            builder.EntitySet<ProductOption>("ProductOptions");
+            builder.EntitySet<ProductOptionValueDefault>("ProductOptionValueDefaults");
         }
-        
+
     }
 }
