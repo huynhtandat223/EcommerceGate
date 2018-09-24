@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/EcommerceApp",
+            "outputPath": "dist/EcommerceGateApp",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -29,7 +29,8 @@
               "src/assets/styles/bootstrap.min.css",
               "src/assets/styles/font-awesome.min.css",
               "node_modules/@progress/kendo-theme-bootstrap/dist/all.css",
-              "src/assets/styles/style.css"
+              "src/assets/styles/style.css",
+              "src/styles.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js"
@@ -58,18 +59,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "EcommerceApp:build"
+            "browserTarget": "EcommerceGateApp:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "EcommerceApp:build:production"
+              "browserTarget": "EcommerceGateApp:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "EcommerceApp:build"
+            "browserTarget": "EcommerceGateApp:build"
           }
         },
         "test": {
@@ -106,7 +107,7 @@
         }
       }
     },
-    "EcommerceApp-e2e": {
+    "EcommerceGateApp-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -114,11 +115,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "EcommerceApp:serve"
+            "devServerTarget": "EcommerceGateApp:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "EcommerceApp:serve:production"
+              "devServerTarget": "EcommerceGateApp:serve:production"
             }
           }
         },
@@ -134,5 +135,5 @@
       }
     }
   },
-  "defaultProject": "EcommerceApp"
+  "defaultProject": "EcommerceGateApp"
 }

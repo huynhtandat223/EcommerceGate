@@ -12,7 +12,7 @@ namespace EcommerceGate.Api.ModelBinders
 
         public InvariantDecimalModelBinder(Type modelType)
         {
-            _baseBinder = new SimpleTypeModelBinder(modelType);
+            //_baseBinder = new SimpleTypeModelBinder(modelType);
         }
 
         public Task BindModelAsync(ModelBindingContext bindingContext)

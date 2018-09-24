@@ -11,6 +11,7 @@ namespace EcommerceGate.Module.Products.Data
             builder.EntitySet<Category>("Categories");
             builder.EntitySet<ProductOption>("ProductOptions");
             builder.EntitySet<ProductOptionValueDefault>("ProductOptionValueDefaults");
+            builder.EntitySet<Product>("Products");
         }
 
     }
