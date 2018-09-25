@@ -9,12 +9,18 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ProductoptionsComponent } from './productoptions/productoptions.component';
 import { ProductoptionvaluedefaultComponent } from './productoptions/productoptionvaluedefault/productoptionvaluedefault.component';
 import { ProductsComponent } from './products/products.component';
+import { ProductdedailComponent } from './products/productdedail/productdedail.component';
+import { LayoutModule } from '@progress/kendo-angular-layout';
+import { GeneralInfomationComponent } from './products/productdedail/general-infomation/general-infomation.component';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+
 
 @NgModule({
   imports: [
-    CommonModule, GridModule, DropDownsModule,
+    CommonModule, GridModule, DropDownsModule, LayoutModule, DateInputsModule, InputsModule,
     ProductsRoutingModule, FormsModule, ReactiveFormsModule
   ],
-  declarations: [CategoriesComponent, ProductoptionsComponent, ProductoptionvaluedefaultComponent, ProductsComponent]
+  declarations: [CategoriesComponent, ProductoptionsComponent, ProductoptionvaluedefaultComponent, ProductsComponent, ProductdedailComponent, GeneralInfomationComponent]
 })
 export class ProductsModule { }

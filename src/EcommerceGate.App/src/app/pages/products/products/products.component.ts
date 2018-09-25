@@ -23,4 +23,8 @@ export class ProductsComponent extends CommonComponent {
         Name: '', SKU: '', RegularPrice: 0, QtyOnHand: 0, IsInStock: false, Weight: 0
       });
   }
+
+  public goToUrl(){
+    document.location.href = '/products/addnew';
+  }
 }

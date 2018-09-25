@@ -14,6 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpErrorHandler }     from './http-error-handler.service';
 import { MessageService }       from './message.service';
+import { LayoutModule } from '@progress/kendo-angular-layout';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { MessageService }       from './message.service';
     HttpModule,
     RouterModule.forRoot(appRoutes),
     GridModule, HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    LayoutModule
   ],
   providers: [HttpErrorHandler,
     MessageService],

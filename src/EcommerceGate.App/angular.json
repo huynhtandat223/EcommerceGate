@@ -23,12 +23,9 @@
               "src/assets"
             ],
             "styles": [
-              {
-                "input": "node_modules/@progress/kendo-theme-default/dist/all.css"
-              },
+              "node_modules/@progress/kendo-theme-bootstrap/dist/all.css",
               "src/assets/styles/bootstrap.min.css",
               "src/assets/styles/font-awesome.min.css",
-              "node_modules/@progress/kendo-theme-bootstrap/dist/all.css",
               "src/assets/styles/style.css",
               "src/styles.css"
             ],
