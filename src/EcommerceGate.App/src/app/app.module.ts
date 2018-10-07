@@ -16,7 +16,6 @@ import { HttpErrorHandler }     from './http-error-handler.service';
 import { MessageService }       from './message.service';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 
-
 @NgModule({
   declarations: [
     AppComponent,

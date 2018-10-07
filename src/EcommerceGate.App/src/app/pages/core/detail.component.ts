@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { BaseService } from '../services/base.service';
+import { BaseComponent } from './base.component';
+import { BaseService } from '../../services/base.service';
 
-export class DetailComponent implements OnInit {
+export class DetailComponent extends BaseComponent {
   public entity: FormGroup;
   getdefaultFormGroup(){
     if(this.entity == null) this.entity = this.createFormGroup(this.entityDefault);
@@ -10,10 +10,7 @@ export class DetailComponent implements OnInit {
   }
   
   constructor(private baseService: BaseService, private createFormGroup: any, private entityDefault) { 
-    
-  }
-
-  ngOnInit() {
+    super();
   }
 
   public onSubmited(entity){

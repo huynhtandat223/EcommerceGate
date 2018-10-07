@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProductService } from '../../../../services/product.service';
 import { FormGroup, FormControl } from '@angular/forms';
-import { DetailComponent } from '../../../detail.component';
+import { DetailComponent } from '../../../core/detail.component';
 
 @Component({
   selector: 'app-productdedail',

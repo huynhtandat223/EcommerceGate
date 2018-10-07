@@ -1,13 +1,16 @@
 import { OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { BaseService } from '../services/base.service';
+import { BaseService } from '../../services/base.service';
+import { BaseComponent } from './base.component';
 
 
-export class CommonComponent implements OnInit {
+export class CommonComponent extends BaseComponent {
   public data: any[] = [];
   public formGroup : FormGroup;
   
-  constructor(private baseService: BaseService,private createFormGroup: any, private entityDefault) { }
+  constructor(private baseService: BaseService,private createFormGroup: any, private entityDefault) { 
+    super();
+  }
 
   ngOnInit() {
     this.baseService.getAll()

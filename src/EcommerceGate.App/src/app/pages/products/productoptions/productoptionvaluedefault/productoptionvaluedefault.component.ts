@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CommonComponent } from '../../../common.component';
+import { CommonComponent } from '../../../core/common.component';
 import { ProductoptionvaluedefaultsService } from '../../../../services/productoptionvaluedefaults.service';
 import { FormGroup, FormControl } from '@angular/forms';
 

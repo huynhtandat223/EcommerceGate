@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonComponent } from '../../common.component';
+import { CommonComponent } from '../../core/common.component';
 import { ProductService } from '../../../services/product.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router, Route } from '@angular/router';
+import { RoutingInfomation } from '../../../constants';
 
 @Component({
   selector: 'app-products',
@@ -9,7 +11,8 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent extends CommonComponent {
-  constructor(private productService: ProductService) { 
+
+  constructor(private productService: ProductService, private router: Router) { 
     super(productService, dataItem => new FormGroup(
       {
         'Name': new FormControl(dataItem.Name),
@@ -25,6 +28,6 @@ export class ProductsComponent extends CommonComponent {
   }
 
   public goToUrl(){
-    document.location.href = '/products/addnew';
+    this.router.navigate(['/products/addnew'], {queryParams: {returnUrl: this.router.url}});
   }
 }
