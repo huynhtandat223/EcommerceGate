@@ -2,7 +2,7 @@
     <kendo-tabstrip>
         <kendo-tabstrip-tab [title]="'General Infomations'" [selected]="true" [ngStyle]="{'overflow': hidden}">
           <ng-template kendoTabContent>
-              <app-general-infomation></app-general-infomation>
+              <app-general-infomation [formGroup]="getdefaultFormGroup()" (onFormSubmit)="onSubmited($event)"></app-general-infomation>
           </ng-template>
         </kendo-tabstrip-tab> 
         <kendo-tabstrip-tab [title]="'New York City'">

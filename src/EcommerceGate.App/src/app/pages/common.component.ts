@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { BaseService } from '../services/base.service';
 
 
