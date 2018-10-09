@@ -15,6 +15,7 @@ export class ProductdedailComponent extends DetailComponent {
       {
         'Id': new FormControl(dataItem.Id),
         'Name': new FormControl(dataItem.Name),
+        'ProductCategories': new FormControl(dataItem.ProductCategories),
         'SKU': new FormControl(dataItem.SKU),
         'RegularPrice': new FormControl(dataItem.RegularPrice),
         'QtyOnHand': new FormControl(dataItem.QtyOnHand),
@@ -22,7 +23,7 @@ export class ProductdedailComponent extends DetailComponent {
         'Weight': new FormControl(dataItem.Weight)
       }), 
       { 
-        Id: 0, Name: '', SKU: '', RegularPrice: 0, QtyOnHand: 0, IsInStock: false, Weight: 0
+        Id: 0, Name: '', SKU: '', ProductCategories: {}, RegularPrice: 0, QtyOnHand: 0, IsInStock: false, Weight: 0
       });
   }
 

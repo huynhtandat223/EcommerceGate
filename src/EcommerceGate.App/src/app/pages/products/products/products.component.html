@@ -18,12 +18,10 @@
     <div class="row mg-top-20">
       <div class="ibox-content">
         <kendo-grid [data]="data" [height]="200" (edit)="editHandler($event)" (cancel)="cancelHandler($event)" (save)="saveHandler($event)"
-          (remove)="removeHandler($event)" (add)="addHandler($event)">
-          <ng-template kendoGridToolbarTemplate>
-            <button kendoGridAddCommand>Add new</button>
-          </ng-template>
+          (remove)="removeHandler($event)">
           <kendo-grid-column field="Name" title="Name" editor="string"></kendo-grid-column>
           <kendo-grid-column field="SKU" title="SKU" editor="string"></kendo-grid-column>
+          <kendo-grid-column field="ProductCategories" title="Categories" editor="string"></kendo-grid-column>
           <kendo-grid-column field="RegularPrice" title="Price" width="250" editor="string"></kendo-grid-column>
           <kendo-grid-column field="QtyOnHand" title="Quantity" editor="string"></kendo-grid-column>
           <kendo-grid-column field="IsInStock" title="In Stock" editor="string"></kendo-grid-column>

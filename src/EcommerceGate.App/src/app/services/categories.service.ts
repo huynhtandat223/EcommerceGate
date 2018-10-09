@@ -13,59 +13,24 @@ const httpOptions = {
 };
 
 import { preProcess, preProcessNothing } from './api.preprocess';
+import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CategoriesService {
-  categoriesUrl = environment.ApiUrl + 'categories';  // URL to web api
-  private handleError: HandleError;
 
-  dataChange: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
-  dialogData: any;
+export class CategoriesService extends BaseService {
 
-  constructor(
-    private http: HttpClient,
-    httpErrorHandler: HttpErrorHandler) {
-    this.handleError = httpErrorHandler.createHandleError('CategoriesService');
+  constructor(httpErrorHandler: HttpErrorHandler, http: HttpClient) 
+  {
+      super(httpErrorHandler, "categories", http);
   }
-
-  /** GET categories from the server */
-  getCategories (): Observable<any[]> {
-    return this.http.get<any>(this.categoriesUrl)
+ 
+  public getGroupedCategories (): Observable<any[]> {
+    return this.http.get<any>(this.apiUrl + '/CategoryService.Grouped')
       .pipe(
         map(preProcess),
-        catchError(this.handleError('getCategories', []))
+        catchError(this.handleError('get' + this.apiEndpoint + + '/CategoryService.Grouped', []))
       );
-  }
-
-  createCategory(category): Observable<any> {
-    return this.http.post(this.categoriesUrl, category, httpOptions)
-      .pipe(
-        map(preProcessNothing),
-        catchError(this.handleError('createCategories', []))
-      );
-  }
-
-  deleteCategory(category): Observable<any>{
-    const id = typeof category === 'number' ? category : category.Id;
-    const url = `${this.categoriesUrl}/${id}`; 
-    return this.http.delete(url, httpOptions)
-      .pipe(
-        map(preProcessNothing),
-        catchError(this.handleError('deleteCategories', []))
-      )
-  }
-
-  updateCategory(category): Observable<any>{
-
-    const id = typeof category === 'number' ? category : category.Id;
-    const url = `${this.categoriesUrl}/${id}`; 
-
-    return this.http.put(url, category, httpOptions)
-    .pipe(
-      map(preProcessNothing),
-      catchError(this.handleError('updateCategories', []))
-    )
   }
 }

@@ -15,6 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpErrorHandler }     from './http-error-handler.service';
 import { MessageService }       from './message.service';
 import { LayoutModule } from '@progress/kendo-angular-layout';
+import { TreeViewModule } from '@progress/kendo-angular-treeview';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { LayoutModule } from '@progress/kendo-angular-layout';
     RouterModule.forRoot(appRoutes),
     GridModule, HttpClientModule,
     BrowserAnimationsModule,
-    LayoutModule
+    LayoutModule,
+    TreeViewModule
   ],
   providers: [HttpErrorHandler,
     MessageService],

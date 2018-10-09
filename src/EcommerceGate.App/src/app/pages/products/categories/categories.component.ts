@@ -23,7 +23,7 @@ export class CategoriesComponent implements OnInit {
     this.getCategories();
   }
   getCategories(): void{
-    this.categoriesService.getCategories()
+    this.categoriesService.getAll()
       .subscribe(categories => this.categories = categories);
   }
 
@@ -39,19 +39,19 @@ export class CategoriesComponent implements OnInit {
     sender.closeRow(rowIndex);
   }
   removeHandler({ dataItem, rowIndex }){
-      this.categoriesService.deleteCategory(dataItem)
+      this.categoriesService.delete(dataItem)
         .subscribe(category => this.categories.splice(rowIndex, 1));
   }
   saveHandler({sender, rowIndex, formGroup, isNew}){
     const categoryInForm = formGroup.value;
     if(isNew){
-      this.categoriesService.createCategory(categoryInForm)
+      this.categoriesService.create(categoryInForm)
         .subscribe(category => this.categories.push(category));
     }
     else{
       const categoryView = this.categories[rowIndex];
       const categoryUpdate = {...categoryView, ...categoryInForm};
-      this.categoriesService.updateCategory(categoryUpdate)
+      this.categoriesService.update(categoryUpdate)
           .subscribe(category => this.categories[rowIndex] = category);
     }
     sender.closeRow(rowIndex);

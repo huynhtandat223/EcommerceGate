@@ -8,7 +8,9 @@ namespace EcommerceGate.Module.Products
     {
         public ProductMapperProfile()
         {
-            CreateMap<Category, CategoryDto>();
+            CreateMap<Category, CategoryDto>()
+                .ForMember(desc => desc.ParentId_Id, opt => opt.MapFrom(src => $"{src.ParentId}_{src.Id}"));
+            
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace EcommerceGate.Core.Dto.Products
+﻿using System.Collections.Generic;
+
+namespace EcommerceGate.Core.Dto.Products
 {
     public class CategoryDto
     {
@@ -6,6 +8,7 @@
         public string Name { set; get; }
         public int ParentId { set; get; }
         public string SKUPrefix { set; get; }
-        public string ParentName { set; get; }
+        public string ParentId_Id { set; get; }
+        public IEnumerable<CategoryDto> Children { set; get; }
     }
 }

@@ -3,6 +3,7 @@ using EcommerceGate.Infrastructures.Data;
 using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 
 namespace EcommerceGate.Core.Controllers
 {
@@ -20,7 +21,14 @@ namespace EcommerceGate.Core.Controllers
         {
             return Ok(_repo.Query());
         }
-        
+
+        [EnableQuery]
+        public SingleResult<T> Get([FromODataUri] int key)
+        {
+            var result = _repo.Query().Where(i => i.Id == key);
+            return SingleResult.Create(result);
+        }
+
         [EnableQuery]
         public IActionResult Post([FromBody]T entity)
         {
@@ -47,6 +55,8 @@ namespace EcommerceGate.Core.Controllers
             _repo.Remove(entity);
             return Ok(entity);
         }
+
+
 
     }
 }

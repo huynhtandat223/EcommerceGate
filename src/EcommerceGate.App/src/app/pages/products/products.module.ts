@@ -14,12 +14,13 @@ import { LayoutModule } from '@progress/kendo-angular-layout';
 import { GeneralInfomationComponent } from './products/productdedail/general-infomation/general-infomation.component';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { InputsModule } from '@progress/kendo-angular-inputs';
+import { TreeViewModule } from '@progress/kendo-angular-treeview';
 
 
 @NgModule({
   imports: [
     CommonModule, GridModule, DropDownsModule, LayoutModule, DateInputsModule, InputsModule,
-    ProductsRoutingModule, FormsModule, ReactiveFormsModule
+    ProductsRoutingModule, FormsModule, ReactiveFormsModule, TreeViewModule
   ],
   declarations: [CategoriesComponent, ProductoptionsComponent, ProductoptionvaluedefaultComponent, ProductsComponent, ProductdedailComponent, GeneralInfomationComponent]
 })
